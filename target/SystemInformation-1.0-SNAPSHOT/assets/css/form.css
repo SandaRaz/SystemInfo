@@ -16,6 +16,24 @@
     /*grid-gap: 2%;*/
 }
 
+#form-content2{
+    width: 65%;
+    height: auto;
+    margin: auto;
+    margin-top: 2%;
+    margin-bottom: 4%;
+    border-radius: 10px;
+    border: solid rgb(48, 56, 65);
+
+    box-shadow: 0 0 10px dimgrey,
+    0 0 5px rgba(48, 56, 65, 0.9);
+    background-color: rgb(48, 56, 65);
+
+    display: grid;
+    grid-template-columns: 50% 50%;
+    /*grid-gap: 2%;*/
+}
+
 .champ-label{
     position: relative;
     width: 90%;

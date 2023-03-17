@@ -3,6 +3,7 @@ package controller;
 import cnx.Connex;
 import exception.DeviseException;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpSession;
 import module.Fonction;
 import table.Entreprise;
 
@@ -58,5 +59,19 @@ public class MyController extends MereController{
             cnx.close();
         }
         redirect("./index.jsp?includePage=formulaire");
+    }
+
+    @CtrlAnnotation(name = "ListeEntreprise")
+    public void ListeEntreprise() throws ServletException, IOException {
+        String idEse = request.getParameter("idEse");
+        HttpSession session = request.getSession();
+        session.setAttribute("idEntreprise", idEse);
+
+        response.sendRedirect("./pages/entreprise.jsp?includePage=entrepriseHome");
+    }
+
+    @CtrlAnnotation(name = "planComptable")
+    public void planComptable(){
+
     }
 }

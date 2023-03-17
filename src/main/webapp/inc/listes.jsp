@@ -8,6 +8,9 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
+    if(session.getAttribute("idEse") != null){
+        session.removeAttribute("idEse");
+    }
     StructListEntreprise structListEntreprise = new StructListEntreprise();
 %>
 <div id="content">
@@ -17,7 +20,7 @@
             <%
                 for(Entreprise ese : structListEntreprise.listes){
             %>
-            <a href="./pages/entreprise.jsp?idEse=<%= ese.getId() %>">
+            <a href="ListeEntreprise.MyController?idEse=<%= ese.getId() %>">
                 <div class="unEntreprise">
                     <%= ese.getNom() %>
                 </div>
