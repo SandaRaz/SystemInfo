@@ -1,0 +1,134 @@
+#form-content{
+    width: 65%;
+    height: auto;
+    margin: auto;
+    margin-top: 2%;
+    margin-bottom: 4%;
+    border-radius: 10px;
+    border: solid rgb(48, 56, 65);
+
+    box-shadow: 0 0 10px dimgrey,
+                0 0 5px rgba(48, 56, 65, 0.9);
+    background-color: rgb(48, 56, 65);
+
+    display: grid;
+    grid-template-columns: 50% 50%;
+    /*grid-gap: 2%;*/
+}
+
+.champ-label{
+    position: relative;
+    width: 90%;
+    height: 30px;
+    margin: auto;
+    margin-top: 4%;
+    margin-bottom: 0%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: dimgrey;
+
+    font-size: smaller;
+}
+.champ-label::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 6px;
+    padding: 1px;
+    background: linear-gradient(45deg, mediumseagreen, lightseagreen);
+    -webkit-mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+    -webkit-mask-composite:  xor;
+    mask-composite: exclude;
+}
+
+option{
+    font-family: 'Century Gothic';
+}
+
+.champ-case input,select{
+    position: relative;
+    width: 95%;
+    height: 29px;
+    margin: auto;
+    margin-top: 4%;
+    margin-bottom: 0%;
+
+    border-radius: 6px;
+    border-style: hidden;
+
+    font-family: "quicksand", serif;
+    font-size: smaller;
+    color: black;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: dimgrey;
+    text-align: center;
+
+    background: linear-gradient(45deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.8));
+}
+
+
+#submit-label input{
+    position: relative;
+    width: 90%;
+    height: 40px;
+    margin: auto;
+    margin-top: 3%;
+    margin-bottom: 3%;
+
+    border-radius: 6px;
+    border-style: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: "quicksand";
+    color: white;
+    text-align: center;
+
+    background: linear-gradient(45deg, mediumseagreen, lightseagreen);
+}
+
+#submit-case input{
+    position: relative;
+    width: 95%;
+    height: 40px;
+    margin: auto;
+    margin-top: 3%;
+    margin-bottom: 3%;
+
+    border-radius: 6px;
+    border-style: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: "quicksand";
+    color: white;
+    text-align: center;
+
+    background: linear-gradient(45deg, mediumseagreen, lightseagreen);
+}
+
+#submit-hover{
+
+}
+
+.char-non-valide{
+    color: red;
+    animation: char-non-valide 1s linear infinite;
+}
+@keyframes char-non-valide {
+    20% {color: red;}
+    40% {color: #ccc;}
+    60% {color: red;}
+    80% {color: #ccc;}
+}

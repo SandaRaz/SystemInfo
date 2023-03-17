@@ -1,0 +1,138 @@
+@font-face {
+    font-family: 'montserrat';
+    src: url('./myfonts/montserrat/Montserrat-Light.otf');
+}
+@font-face {
+    font-family: 'dancing';
+    src: url('./myfonts/dancing/Dancing Script OT.otf');
+}
+@font-face {
+    font-family: 'quicksand';
+    src: url('./myfonts/quicksand/Quicksand-Regular.ttf');
+}
+
+body{
+    background: rgba(48, 56, 65, 0.9);
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+#content{
+    height: auto;
+    border-style: hidden;
+
+    font-family: "quicksand";
+}
+
+#menu{
+    width: 80%;
+    height: auto;
+    margin: auto;
+    margin-top: 1%;
+    border-radius: 10px;
+    border: solid rgb(48, 56, 65);
+
+    background-color: rgb(48, 56, 65);
+}
+
+#menu h1,h2,h3{
+    color: mediumspringgreen;
+    text-align: center;
+    font-family: "quicksand";
+}
+
+#navigationbar{
+    width: 80%;
+    height: 40px;
+    margin: auto;
+    margin-top: 1%;
+    margin-bottom: 1%;
+
+    border-radius: 10px;
+    border: solid rgb(48, 56, 65);
+
+    background-color: rgb(48, 56, 65);
+
+    display: grid;
+    grid-template-columns: 33.33% 33.33% 33.33%;
+}
+
+#navigationguide{
+    width: 95%;
+    height: 100%;
+    border: 3px hidden white;
+    margin: auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    color: mediumspringgreen;
+    font-family: "quicksand", serif;
+}
+
+#naviconsbar{
+    width: 95%;
+    height: 100%;
+    border: 3px hidden white;
+
+    float: right;
+    margin: auto;
+    margin-right: 1%;
+
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+#naviconsbar a{
+    text-decoration: none;
+    pointer-events: none;
+}
+
+.navicone{
+    pointer-events: auto;
+
+    margin-left: 10px;
+    margin-right: 10px;
+    float: right;
+
+    font-size: 150%;
+    color: mediumspringgreen;
+
+    background: -webkit-linear-gradient(45deg, mediumseagreen, lightseagreen);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.navicone:hover{
+    font-size: 160%;
+    background: -webkit-linear-gradient(45deg, lightseagreen, lightseagreen);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#footer{
+    width: 80%;
+    height: 40px;
+    margin: auto;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    border-radius: 10px;
+    border: solid rgb(48, 56, 65);
+
+    background-color: rgb(48, 56, 65);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    color: mediumspringgreen;
+    font-size: smaller;
+    font-family: "quicksand", serif;
+}
