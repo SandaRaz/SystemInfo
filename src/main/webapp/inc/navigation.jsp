@@ -18,5 +18,5 @@
         <a href="./index.jsp?includePage=listes"><i class="far fa-list-alt navicone"> <!-- Liste des Entreprises --></i></a>
     </div>
 
-    <script src="../assets/js/navtools.js" rel="script" type="text/javascript"></script>
+    <script src="./assets/js/navtools.js" rel="script" type="text/javascript"></script>
 </div>

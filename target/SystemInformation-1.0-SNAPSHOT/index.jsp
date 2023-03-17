@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>SI - New Entreprise</title>
+    <title>Syst&eagrave;me d'Information</title>
     <link href="./assets/css/allpage.css" rel="stylesheet" type="text/css">
     <link href="./assets/css/fonts/fontawesome-5/css/all.css" rel="stylesheet" type="text/css">
     <link href="./assets/css/form.css" rel="stylesheet" type="text/css">
