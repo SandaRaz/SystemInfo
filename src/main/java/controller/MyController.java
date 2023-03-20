@@ -6,6 +6,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpSession;
 import module.Fonction;
 import table.Entreprise;
+import table.PlanComptable;
 
 import jakarta.servlet.annotation.WebServlet;
 
@@ -13,10 +14,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 @WebServlet(name = "MyController", value = "*.MyController")
 public class MyController extends MereController{
@@ -52,8 +51,8 @@ public class MyController extends MereController{
             ese.InsertInto(cnx);
         } catch (Exception e) {
             cnx.rollback();
-            e.printStackTrace();
             redirect("./index.jsp");
+            e.printStackTrace();
         }finally {
             cnx.commit();
             cnx.close();
@@ -71,7 +70,53 @@ public class MyController extends MereController{
     }
 
     @CtrlAnnotation(name = "planComptable")
-    public void planComptable(){
+    public void planComptable() throws IOException, SQLException, ServletException {
+        PrintWriter out = response.getWriter();
+        HttpSession session = request.getSession();
 
+        String numcompte = request.getParameter("numCompte");
+        String intitule = request.getParameter("intitule");
+        String idEse = (String) session.getAttribute("idEntreprise");
+
+        boolean success = true;
+
+        Connection cnx = Connex.PsqlConnect();
+        try {
+            cnx.setAutoCommit(false);
+
+            PlanComptable newplan = null;
+            newplan = (PlanComptable) new PlanComptable().createInstancefromDB(cnx, numcompte);
+
+            if(newplan != null){
+                throw new Exception("Ce compte numero "+numcompte+" existe deja");
+            }else{
+                newplan = new PlanComptable(numcompte, intitule, idEse);
+                newplan.InsertInto(cnx);
+            }
+        } catch (Exception e) {
+            cnx.rollback();
+            success = false;
+
+            e.printStackTrace();
+        }finally {
+            cnx.commit();
+            cnx.close();
+        }
+
+        if(!success){
+            redirect("./entreprise.jsp?includePage=planComptable");
+        }else{
+            redirect("./entreprise.jsp?includePage=entrepriseHome");
+        }
+    }
+
+    @CtrlAnnotation(name = "deleteRow")
+    public void deleteRow() throws SQLException {
+        String action = request.getParameter("action");
+        String compte = request.getParameter("compte");
+
+        if(action.equals("deleteRow")){
+            PlanComptable.deleteRow(compte);
+        }
     }
 }

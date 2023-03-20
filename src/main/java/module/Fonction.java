@@ -1,5 +1,7 @@
 package module;
 
+import table.BDObject;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -18,5 +20,12 @@ public class Fonction {
         String datefin = sdf.format(resultdate);
 
         return datefin;
+    }
+
+    public static void main(String[] args) {
+        String s = "test";
+        if(s.contains("'")){
+            System.out.println(s);
+        }
     }
 }

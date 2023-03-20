@@ -13,6 +13,16 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class BDObject {
+	String id;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public BDObject(){
 
 	}
@@ -32,8 +42,11 @@ public class BDObject {
 				vField.add(f);
 			}
 		}
+		String idField = vField.get(0).getName();
+
 		Statement stmt = conn.createStatement();
-		String query = "SELECT * FROM "+this.getClass().getSimpleName()+" WHERE id ='"+id+"'";
+		String query = "SELECT * FROM "+this.getClass().getSimpleName()+" WHERE "+idField+" ='"+id+"'";
+		System.out.println("Query >> "+query);
 		ResultSet res = stmt.executeQuery(query);
 		while(res.next()){
 			Object clone = hisConstr.newInstance();
@@ -64,9 +77,9 @@ public class BDObject {
 			}
 		}
 		Statement stmt = conn.createStatement();
-		String query = "SELECT * FROM "+this.getClass().getSimpleName();
+		String query = "SELECT * FROM "+this.getClass().getSimpleName()+" ORDER BY "+getAttributSimpleName(vField.get(0));
 
-		//System.out.println(query);
+		System.out.println(query);
 
 		ResultSet res = stmt.executeQuery(query);
 		while(res.next()){
@@ -98,7 +111,7 @@ public class BDObject {
 			}
 		}
 		Statement stmt = conn.createStatement();
-		String query = "SELECT * FROM "+this.getClass().getSimpleName()+" WHERE "+nomcolonne+"='"+condition+"'";
+		String query = "SELECT * FROM "+this.getClass().getSimpleName()+" WHERE "+nomcolonne+"='"+condition+"'"+" ORDER BY "+getAttributSimpleName(vField.get(0));
 		ResultSet res = stmt.executeQuery(query);
 		while(res.next()){
 			Object clone = hisConstr.newInstance();
@@ -380,6 +393,12 @@ public class BDObject {
 					System.out.println("Double >>> "+temprep);
 				}
 
+				if(getFieldTypeRealName(f).contains("String")){
+					if(temprep.contains("'")){
+						temprep = escapeSingleQuote(temprep);
+					}
+				}
+
 				//System.out.println("SQL DATE >> "+f.getType());
 				String s = f.getType()+"";
 				if(s.contains("java.sql.Date")){
@@ -400,6 +419,12 @@ public class BDObject {
 				if(getFieldTypeRealName(f).contains("Double")){
 					temprep = pointToVirg(temprep);
 					System.out.println("Double >>> "+temprep);
+				}
+
+				if(getFieldTypeRealName(f).contains("String")){
+					if(temprep.contains("'")){
+						temprep = escapeSingleQuote(temprep);
+					}
 				}
 
 				if(getAttributSimpleName(f).toLowerCase().contains("date") && getFieldTypeRealName(f).toLowerCase().contains("string")){
@@ -520,6 +545,34 @@ public class BDObject {
 		}
 		String ret = String.valueOf(chaine);
 		return ret;
+	}
+
+	public static String escapeSingleQuote(String string){
+		char[] chaine = string.toCharArray();
+		int singlequote = 0;
+		for(char c : chaine){
+			if(c == '\''){
+				singlequote++;
+			}
+		}
+		char[] newchaine = new char[chaine.length+singlequote];
+		int it = 0;
+		for (char c : chaine) {
+			if (c == '\'') {
+				newchaine[it] = c;
+				newchaine[it + 1] = '\'';
+				it += 2;
+			} else {
+				newchaine[it] = c;
+				it++;
+			}
+		}
+
+		if(singlequote == 0){
+			return string;
+		}else{
+			return String.valueOf(newchaine);
+		}
 	}
 
 	public static String myparseStringDate(String s){

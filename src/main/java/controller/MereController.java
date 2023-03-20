@@ -19,10 +19,9 @@ public class MereController extends HttpServlet {
     public HttpServletRequest request;
     public HttpServletResponse response;
 
-    protected void processResquest() throws ServletException, IOException {
+    protected void processResquest() throws IOException {
         PrintWriter out = response.getWriter();
         this.test(this, request.getRequestURI());
-
     }
     public void redirect(String indexFile) throws ServletException, IOException {
         dispat = request.getRequestDispatcher(indexFile);
@@ -31,28 +30,40 @@ public class MereController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        this.request = request;this.response=response;
+        this.request = request;
+        this.response=response;
         processResquest();
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        this.request = request;this.response=response;
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        this.request = request;
+        this.response=response;
         processResquest();
     }
 
     public String urlUtile(String URL) {
-        if(URL.contains("_war")){
-            System.out.println("'war' artifact detected");
-        }
-        return URL.split("/")[2];
+//        if(URL.contains("_war")){
+//            System.out.println("'war' artifact detected");
+//        }
+        String[] urlsplitted = URL.split("/");
+        String target = urlsplitted[urlsplitted.length-1];
+        //System.out.println("Target >>> "+target);
+
+        return target;
     }
 
     public String getController(String URL) {
-        return urlUtile(URL).split("\\.")[1];
+        String controller = urlUtile(URL).split("\\.")[1];
+        //System.out.println("controller >>> "+controller);
+
+        return controller;
     }
     public String getMethodName(String URL) {
-        return urlUtile(URL).split("."+ getController(URL))[0];
+        String methodName = urlUtile(URL).split("."+ getController(URL))[0];
+        //System.out.println("methodName >>> "+methodName);
+
+        return methodName;
     }
 
     public void test(Object cls , String URL) {

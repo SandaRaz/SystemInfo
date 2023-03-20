@@ -20,10 +20,14 @@ public class StructListEntreprise {
             for(BDObject bdo : new Entreprise().Find(cnx)){
                 listes.add((Entreprise) bdo);
             }
-
-            cnx.close();
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+        }finally {
+            try {
+                cnx.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
