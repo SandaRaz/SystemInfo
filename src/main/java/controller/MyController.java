@@ -90,7 +90,7 @@ public class MyController extends MereController{
             if(newplan != null){
                 throw new Exception("Ce compte numero "+numcompte+" existe deja");
             }else{
-                newplan = new PlanComptable(numcompte, intitule, idEse);
+                newplan = new PlanComptable("default", numcompte, intitule, idEse);
                 newplan.InsertInto(cnx);
             }
         } catch (Exception e) {
