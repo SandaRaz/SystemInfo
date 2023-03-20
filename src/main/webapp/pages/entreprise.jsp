@@ -8,6 +8,12 @@
     <link href="../assets/css/fonts/fontawesome-5/css/all.css" rel="stylesheet" type="text/css">
     <link href="../assets/css/form.css" rel="stylesheet" type="text/css">
     <link href="../assets/css/entreprise.css" rel="stylesheet" type="text/css">
+
+    <link href="../assets/input-file-master/input-file.css" rel="stylesheet" type="text/css">
+
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/suppressionPC.js"></script>
+
 </head>
 
 <body>
@@ -27,6 +33,5 @@
 
 <jsp:include page="../inc/footer.jsp"/>
 
-<script src="./assets/js/trait.js" rel="script" type="text/javascript"></script>
 </body>
 </html>

@@ -1,14 +1,14 @@
 package table;
 
 public class Devise extends BDObject{
-    int id;
+    String id;
     String nom;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -23,7 +23,7 @@ public class Devise extends BDObject{
     public Devise() {
     }
 
-    public Devise(int id, String nom) {
+    public Devise(String id, String nom) {
         this.id = id;
         this.nom = nom;
     }

@@ -1,0 +1,58 @@
+@font-face {
+	font-family: 'montserrat';
+	src: url('../css/myfonts/montserrat/Montserrat-Light.otf');
+}
+@font-face {
+	font-family: 'quicksand';
+	src: url('../css/myfonts/quicksand/Quicksand-Regular.ttf');
+}
+
+.inf__drop-area * {
+	box-sizing: border-box;
+}
+
+.inf__drop-area {
+	position: relative;
+	display: flex;
+	align-items: center;
+	width: 80%;
+	height: 30px;
+	border: 1px solid #c4c4c4;
+	border-radius: 6px;
+	padding: 0 20px;
+	transition: 0.2s;
+
+	margin: auto;
+	margin-top: 4%;
+	margin-bottom: 0%;
+	color: dimgrey;
+	background: linear-gradient(45deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.8));
+}
+
+.inf__drop-area.is-active {
+	background-color: rgba(0, 20, 20, 0.03);
+}
+
+.inf__btn {
+	display: inline-block;
+
+	border: 1px dashed dimgrey;
+	border-radius: 3px;
+	padding: 5px 12px;
+	margin-right: 10px;
+	margin-top: 2%;
+	margin-bottom: 2%;
+
+	font-size: 8px;
+	font-family: "quicksand", sans-serif;
+	color: dimgrey;
+	text-transform: uppercase;
+}
+
+.inf__hint {
+	flex: 1;
+	font-size: 11px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}

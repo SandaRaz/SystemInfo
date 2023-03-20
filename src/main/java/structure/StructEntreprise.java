@@ -14,10 +14,14 @@ public class StructEntreprise {
 
         try {
             this.entreprise = (Entreprise) new Entreprise().createInstancefromDB(cnx, idEse);
-            cnx.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            try {
+                cnx.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-
     }
 }
