@@ -13,7 +13,7 @@
 
     <script src="../assets/js/jquery.min.js"></script>
     <script src="../assets/js/suppressionPC.js"></script>
-
+    <script src="../assets/js/modificationPC.js"></script></head>
 </head>
 
 <body>

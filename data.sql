@@ -47,7 +47,8 @@ ALTER TABLE coursdechange ADD FOREIGN KEY(idDevise) REFERENCES devise(id);
 ALTER TABLE coursdechange ADD FOREIGN KEY(idDeviseEquiv) REFERENCES devise(id);
 
 CREATE TABLE planComptable(
-    compte VARCHAR(15) PRIMARY KEY,
+	id SERIAL PRIMARY KEY,
+    compte VARCHAR(15),
     intitule VARCHAR(50),
     idEntreprise int
 );

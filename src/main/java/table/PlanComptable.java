@@ -13,9 +13,20 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class PlanComptable extends BDObject{
+    String id;
     String compte;
     String intitule;
     String idEntreprise;
+
+    @Override
+    public String getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getCompte() {
         return compte;
@@ -44,9 +55,8 @@ public class PlanComptable extends BDObject{
     public PlanComptable() {
     }
 
-    public PlanComptable(String compte, String intitule, String idEntreprise) {
-        super.setId(compte);
-
+    public PlanComptable(String id ,String compte, String intitule, String idEntreprise) {
+        this.setId(id);
         this.setCompte(compte);
         this.setIntitule(intitule);
         this.setIdEntreprise(idEntreprise);
@@ -74,7 +84,7 @@ public class PlanComptable extends BDObject{
                 newplan = (PlanComptable) new PlanComptable().createInstancefromDB(cnx, compte);
 
                 if(newplan == null){
-                    newplan = new PlanComptable(compte, intitule, idEse);
+                    newplan = new PlanComptable("default", compte, intitule, idEse);
                     newplan.InsertInto(cnx);
                 }
             }

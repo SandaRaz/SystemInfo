@@ -209,6 +209,15 @@ input[type="file"]:focus {
     color: white;
 }
 
+.modifPCinput{
+    border: 1px dashed white;
+    color: white;
+    font-family: "quicksand", sans-serif;
+    width: 100%;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
 #suppconfirm{
     opacity: 0;
     display: grid;

@@ -36,11 +36,13 @@
             for(PlanComptable pc : structPlanComptable.planComptables){
         %>
                 <tr class="ligneCompte">
-                    <td><%= pc.getCompte() %></td>
+                    <td style="max-width: 60px">
+                        <div><%= pc.getCompte() %></div>
+                    </td>
                     <td>
                         <div class="intitule"><%= pc.getIntitule() %></div>
                     </td>
-                    <td class="modifsuppr"><a href="">Modifier</a></td>
+                    <td class="modifsuppr modif-link" data-compte="<%= pc.getCompte() %>" data-intitule="<%= pc.getIntitule() %>"><a href="#">Modifier</a></td>
                     <td class="modifsuppr delete-link" data-compte="<%= pc.getCompte() %>"><a href="#">Supprimer</a></td>
                 </tr>
         <%
