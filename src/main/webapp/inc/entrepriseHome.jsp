@@ -16,11 +16,33 @@
 
 <div id="content">
     <div id="menu">
-        <h2><%= structEntreprise.entreprise.getNom() %></h2>
-        <div id="sub-menu">
-                <ul>
-                    <a href="./entreprise.jsp?includePage=planComptable"><li>Plan Comptable</li></a>
-                </ul>
+        <h2>
+            <%= structEntreprise.entreprise.getNom() %>
+            <a href="./entreprise.jsp?includePage=modifEse"><i class="fas fa-pen navicone2"></i></a>
+            <a href="./entreprise.jsp?includePage=recherche"><i class="fas fa-search navicone2"></i></a>
+        </h2>
+
+        <div id="sub-menu2">
+            <a href="./entreprise.jsp?includePage=planComptable">
+                <div class="affichage">
+                    <p class="menu-nav">PC</p>
+                </div>
+            </a>
+            <a href="./entreprise.jsp?includePage=planTiers">
+                <div class="affichage">
+                    <p class="menu-nav">PT</p>
+                </div>
+            </a>
+            <a href="./entreprise.jsp?includePage=codeJournaux">
+                <div class="affichage">
+                    <p class="menu-nav">CJ</p>
+                </div>
+            </a>
+
+            <div class="affichage-st">Plan Comptable</div>
+            <div class="affichage-st">Plan Tiers</div>
+            <div class="affichage-st">Code Journaux</div>
+
         </div>
     </div>
 </div>
