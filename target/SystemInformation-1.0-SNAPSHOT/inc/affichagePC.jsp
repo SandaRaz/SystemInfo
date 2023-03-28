@@ -42,8 +42,8 @@
                     <td>
                         <div class="intitule"><%= pc.getIntitule() %></div>
                     </td>
-                    <td class="modifsuppr modif-link" data-compte="<%= pc.getCompte() %>" data-intitule="<%= pc.getIntitule() %>"><a href="#">Modifier</a></td>
-                    <td class="modifsuppr delete-link" data-compte="<%= pc.getCompte() %>"><a href="#">Supprimer</a></td>
+                    <td class="modifsuppr modif-link" data-id="<%= pc.getId() %>" data-compte="<%= pc.getCompte() %>" data-intitule="<%= pc.getIntitule() %>"><a href="#">Modifier</a></td>
+                    <td class="modifsuppr delete-link" data-id="<%= pc.getId() %>" data-compte="<%= pc.getCompte() %>"><a href="#">Supprimer</a></td>
                 </tr>
         <%
             }

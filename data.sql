@@ -52,5 +52,22 @@ CREATE TABLE planComptable(
     intitule VARCHAR(50),
     idEntreprise int
 );
-
 ALTER TABLE planComptable ADD FOREIGN KEY(idEntreprise) REFERENCES entreprise(id);
+
+CREATE TABLE planTiers(
+    id SERIAL PRIMARY KEY,
+    numero VARCHAR(15),
+    intitule VARCHAR(50),
+    idEntreprise int
+);
+
+ALTER TABLE planTiers ADD FOREIGN KEY(idEntreprise) REFERENCES entreprise(id);
+
+CREATE TABLE codeJournaux(
+    id SERIAL PRIMARY KEY,
+    code VARCHAR(15),
+    intitule VARCHAR(50),
+    idEntreprise int
+);
+
+ALTER TABLE codeJournaux ADD FOREIGN KEY(idEntreprise) REFERENCES entreprise(id);

@@ -15,7 +15,7 @@ for(let i = 0; i < navicons.length ; i++){
     let navicon = navicons[i]
     navicon.addEventListener('mouseenter', function () {
         navigationguide.innerHTML = getCommentaire(navicon)
-        console.log(getCommentaire(navicon))
+        //console.log(getCommentaire(navicon))
     });
 }
 

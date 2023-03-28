@@ -9,7 +9,7 @@
 
     box-shadow: 0 0 10px dimgrey,
                 0 0 5px rgba(48, 56, 65, 0.9);
-    background-color: rgb(48, 56, 65);
+    background: rgb(48, 56, 65);
 
     display: grid;
     grid-template-columns: 50% 50%;
@@ -62,7 +62,6 @@ option{
 
     font-family: "quicksand", serif;
     font-size: smaller;
-    color: black;
 
     display: flex;
     justify-content: center;

@@ -8,6 +8,9 @@
     <link href="./assets/css/fonts/fontawesome-5/css/all.css" rel="stylesheet" type="text/css">
     <link href="./assets/css/form.css" rel="stylesheet" type="text/css">
     <link href="./assets/css/entreprise.css" rel="stylesheet" type="text/css">
+
+    <script src="./assets/js/jquery.min.js"></script>
+    <script src="./assets/js/themes.js" rel="script" type="text/javascript"></script>
 </head>
 
 <body>

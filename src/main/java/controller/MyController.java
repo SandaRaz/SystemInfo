@@ -5,16 +5,18 @@ import exception.DeviseException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpSession;
 import module.Fonction;
+import org.apache.poi.ss.formula.functions.Code;
+import table.CodeJournaux;
 import table.Entreprise;
 import table.PlanComptable;
 
 import jakarta.servlet.annotation.WebServlet;
+import table.PlanTiers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.ParseException;
 
 @WebServlet(name = "MyController", value = "*.MyController")
@@ -72,20 +74,17 @@ public class MyController extends MereController{
     @CtrlAnnotation(name = "planComptable")
     public void planComptable() throws IOException, SQLException, ServletException {
         PrintWriter out = response.getWriter();
-        HttpSession session = request.getSession();
 
         String numcompte = request.getParameter("numCompte");
         String intitule = request.getParameter("intitule");
-        String idEse = (String) session.getAttribute("idEntreprise");
+        String idEse = (String) request.getSession().getAttribute("idEntreprise");
 
         boolean success = true;
-
         Connection cnx = Connex.PsqlConnect();
         try {
             cnx.setAutoCommit(false);
-
             PlanComptable newplan = null;
-            newplan = (PlanComptable) new PlanComptable().createInstancefromDB(cnx, numcompte);
+            newplan = (PlanComptable) new PlanComptable().createInstancefromDB(cnx, "compte", numcompte);
 
             if(newplan != null){
                 throw new Exception("Ce compte numero "+numcompte+" existe deja");
@@ -110,13 +109,117 @@ public class MyController extends MereController{
         }
     }
 
+    @CtrlAnnotation(name = "planTiers")
+    public void planTiers() throws IOException, SQLException, ServletException {
+        PrintWriter out = response.getWriter();
+
+        String numero = request.getParameter("numCompte");
+        String intitule = request.getParameter("intitule");
+        String idEse = (String) request.getSession().getAttribute("idEntreprise");
+
+        boolean success = true;
+        Connection cnx = Connex.PsqlConnect();
+        try {
+            cnx.setAutoCommit(false);
+            PlanTiers newplan = null;
+            newplan = (PlanTiers) new PlanTiers().createInstancefromDB(cnx, "numero", numero);
+
+            if(newplan != null){
+                throw new Exception("Ce compte numero "+numero+" existe deja");
+            }else{
+                newplan = new PlanTiers("default", numero, intitule, idEse);
+                newplan.InsertInto(cnx);
+            }
+        } catch (Exception e) {
+            cnx.rollback();
+            success = false;
+
+            e.printStackTrace();
+        }finally {
+            cnx.commit();
+            cnx.close();
+        }
+
+        if(!success){
+            redirect("./entreprise.jsp?includePage=planTiers");
+        }else{
+            redirect("./entreprise.jsp?includePage=entrepriseHome");
+        }
+    }
+
+    @CtrlAnnotation(name = "codeJournaux")
+    public void codeJournaux() throws IOException, SQLException, ServletException {
+        PrintWriter out = response.getWriter();
+
+        String code = request.getParameter("code");
+        String intitule = request.getParameter("intitule");
+        String idEse = (String) request.getSession().getAttribute("idEntreprise");
+
+        boolean success = true;
+        Connection cnx = Connex.PsqlConnect();
+        try {
+            cnx.setAutoCommit(false);
+            CodeJournaux codeJournaux = null;
+            codeJournaux = (CodeJournaux) new CodeJournaux().createInstancefromDB(cnx, "code", code);
+
+            if(codeJournaux != null){
+                throw new Exception("Ce code "+codeJournaux+" existe deja");
+            }else{
+                codeJournaux = new CodeJournaux("default", code, intitule, idEse);
+                codeJournaux.InsertInto(cnx);
+            }
+        } catch (Exception e) {
+            cnx.rollback();
+            success = false;
+
+            e.printStackTrace();
+        }finally {
+            cnx.commit();
+            cnx.close();
+        }
+
+        if(!success){
+            redirect("./entreprise.jsp?includePage=codeJournaux");
+        }else{
+            redirect("./entreprise.jsp?includePage=entrepriseHome");
+        }
+    }
+
     @CtrlAnnotation(name = "deleteRow")
     public void deleteRow() throws SQLException {
         String action = request.getParameter("action");
+        String id = request.getParameter("id");
         String compte = request.getParameter("compte");
 
-        if(action.equals("deleteRow")){
-            PlanComptable.deleteRow(compte);
+        if(action.equals("deleteRowPC")){
+            PlanComptable.deleteRow(id);
+        }
+        if(action.equals("deleteRowPT")){
+            PlanTiers.deleteRow(id);
+        }
+        if(action.equals("deleteRowCJ")){
+            CodeJournaux.deleteRow(id);
+        }
+    }
+
+    @CtrlAnnotation(name = "updateRow")
+    public void updateRow() throws Exception {
+        String action = request.getParameter("action");
+
+        String id = request.getParameter("idPC");
+        String oldcompte = request.getParameter("oldcompte");
+        String colonne = request.getParameter("colonne");
+        String value = request.getParameter("value");
+        String idEse = (String) request.getSession().getAttribute("idEntreprise");
+
+        if(action.equals("updateRowPC")){
+            PlanComptable.updateCell(id, oldcompte, colonne, value, idEse);
+        }
+        if(action.equals("updateRowPT")){
+            PlanTiers.updateCell(id, oldcompte, colonne, value, idEse);
+        }
+        if(action.equals("updateRowCJ")){
+            CodeJournaux.updateCell(id, oldcompte, colonne, value, idEse);
         }
     }
 }

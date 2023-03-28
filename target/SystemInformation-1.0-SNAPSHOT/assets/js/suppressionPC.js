@@ -20,6 +20,7 @@ $(document).ready(function () {
        //     });
        // }
 
+       var id = $(this).data('id');
        var compte = $(this).data('compte');
        var row = $(this).closest('tr');
 
@@ -27,7 +28,8 @@ $(document).ready(function () {
            url: '../deleteRow.MyController',
            type: 'POST',
            data: {  // variable envoyer en Parameter
-               action: 'deleteRow',
+               action: 'deleteRowPC',
+               id: id,
                compte: compte
            },
            success: function () {
@@ -38,6 +40,54 @@ $(document).ready(function () {
            }
        });
    });
+
+    $('.delete-linkPT').click(function(event){
+        event.preventDefault();
+
+        var id = $(this).data('id');
+        var compte = $(this).data('compte');
+        var row = $(this).closest('tr');
+
+        $.ajax({
+            url: '../deleteRow.MyController',
+            type: 'POST',
+            data: {  // variable envoyer en Parameter
+                action: 'deleteRowPT',
+                id: id,
+                compte: compte
+            },
+            success: function () {
+                row.remove();
+            },
+            error: function () {
+                alert("Une erreur est survenue lors de la suppression de la ligne.")
+            }
+        });
+    });
+
+    $('.delete-linkCJ').click(function(event){
+        event.preventDefault();
+
+        var id = $(this).data('id');
+        var code = $(this).data('code');
+        var row = $(this).closest('tr');
+
+        $.ajax({
+            url: '../deleteRow.MyController',
+            type: 'POST',
+            data: {  // variable envoyer en Parameter
+                action: 'deleteRowCJ',
+                id: id,
+                compte: code
+            },
+            success: function () {
+                row.remove();
+            },
+            error: function () {
+                alert("Une erreur est survenue lors de la suppression de la ligne.")
+            }
+        });
+    });
 });
 
 function suppressionConfirmer() {

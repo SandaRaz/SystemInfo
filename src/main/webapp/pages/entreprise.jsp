@@ -12,6 +12,7 @@
     <link href="../assets/input-file-master/input-file.css" rel="stylesheet" type="text/css">
 
     <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/themes.js"></script>
     <script src="../assets/js/suppressionPC.js"></script>
     <script src="../assets/js/modificationPC.js"></script></head>
 </head>

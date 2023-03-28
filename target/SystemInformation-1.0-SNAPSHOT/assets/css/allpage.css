@@ -35,7 +35,7 @@ a{
     border-radius: 10px;
     border: solid rgb(48, 56, 65);
 
-    background-color: rgb(48, 56, 65);
+    background: rgb(48, 56, 65);
 }
 
 #menu h1,h2,h3{
@@ -54,7 +54,7 @@ a{
     border-radius: 10px;
     border: solid rgb(48, 56, 65);
 
-    background-color: rgb(48, 56, 65);
+    background: rgb(48, 56, 65);
 
     display: grid;
     grid-template-columns: 33.33% 33.33% 33.33%;
@@ -116,6 +116,27 @@ a{
     -webkit-text-fill-color: transparent;
 }
 
+.navicone2{
+    pointer-events: auto;
+
+    margin-left: 10px;
+    margin-right: 0px;
+
+    font-size: 75%;
+    color: mediumspringgreen;
+
+    background: -webkit-linear-gradient(45deg, dimgrey, white);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.navicone2:hover{
+    font-size: 80%;
+    background: -webkit-linear-gradient(45deg, lightseagreen, lightseagreen);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 #footer{
     width: 80%;
     height: 40px;
@@ -125,7 +146,7 @@ a{
     border-radius: 10px;
     border: solid rgb(48, 56, 65);
 
-    background-color: rgb(48, 56, 65);
+    background: rgb(48, 56, 65);
 
     display: flex;
     justify-content: center;

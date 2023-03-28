@@ -61,6 +61,38 @@ public class BDObject {
 		return retour;
 	}
 
+	public BDObject createInstancefromDB(Connection conn, String colonne, Object value) throws Exception{
+		if(conn.isClosed()){
+			conn = Connex.OracleConnect();
+		}
+		BDObject retour = null;
+
+		Class<?> thisclass = Class.forName(this.getClass().getName());
+		Constructor<?> hisConstr = thisclass.getConstructor();
+		ArrayList<Field> vField = new ArrayList<Field>();
+		for(Field f : thisclass.getDeclaredFields()){
+			if(f.getModifiers() == 0){
+				vField.add(f);
+			}
+		}
+
+		Statement stmt = conn.createStatement();
+		String query = "SELECT * FROM "+this.getClass().getSimpleName()+" WHERE "+colonne+" ='"+value+"'";
+		System.out.println("Query >> "+query);
+		ResultSet res = stmt.executeQuery(query);
+		while(res.next()){
+			Object clone = hisConstr.newInstance();
+			for(int i=0;i<vField.size();i++){
+				DynamicInsert(clone,res,vField.get(i),i+1);
+			}
+			retour = (BDObject) clone;
+		}
+		res.close();
+		stmt.close();
+
+		return retour;
+	}
+
 	public ArrayList<BDObject> Find(Connection conn) throws Exception{
 		if(conn.isClosed()){
 			conn = Connex.OracleConnect();

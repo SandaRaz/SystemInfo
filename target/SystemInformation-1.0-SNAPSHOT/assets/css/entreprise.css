@@ -22,11 +22,29 @@
 
     box-shadow: 0 0 10px dimgrey,
     0 0 5px rgba(48, 56, 65, 0.9);
-    background-color: rgb(48, 56, 65);
+    background: rgb(48, 56, 65);
 
     display: grid;
     grid-template-columns: 100%;
     /*grid-gap: 2%;*/
+}
+
+#sub-menu2{
+    width: 65%;
+    height: auto;
+    margin: auto;
+    margin-top: 2%;
+    margin-bottom: 4%;
+    border-radius: 10px;
+    border: solid rgb(48, 56, 65);
+
+    box-shadow: 0 0 10px dimgrey,
+    0 0 5px rgba(48, 56, 65, 0.9);
+    background: rgb(48, 56, 65);
+
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    grid-gap: 3.33%;
 }
 
 .unEntreprise{
@@ -183,6 +201,7 @@ input[type="file"]:focus {
 }
 .tableau tr th{
     border: 1px solid white;
+    /*background: linear-gradient(45deg, rgba(59, 179, 115, 0.2), rgba(32, 178, 169, 0.2));*/
     background-color: rgba(255, 255, 255, 0.3);
     font-size: medium;
 }
@@ -215,7 +234,8 @@ input[type="file"]:focus {
     font-family: "quicksand", sans-serif;
     width: 100%;
     height: 30px;
-    background: rgba(255, 255, 255, 0.05);
+    /*background: rgba(255, 255, 255, 0.05);*/
+    background: dimgrey;
 }
 
 #suppconfirm{
@@ -223,4 +243,68 @@ input[type="file"]:focus {
     display: grid;
     grid-template-columns: 48% 48%;
     grid-gap: 4%;
+}
+
+.affichage{
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    margin-top: 10%;
+    margin-bottom: 0%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: dimgrey;
+
+    font-size: smaller;
+}
+.affichage::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 6px;
+    padding: 2px;
+    background: linear-gradient(45deg, mediumseagreen, lightseagreen);
+    -webkit-mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+    -webkit-mask-composite:  xor;
+    mask-composite: exclude;
+}
+
+.affichage:hover{
+    animation: tourner 0.3s linear;
+}
+@keyframes tourner {
+    20%{rotate: 60deg;}
+    40%{rotate: 120deg;}
+    60%{rotate: 180deg;}
+    80%{rotate: 240deg;}
+    100%{rotate: 360deg;}
+}
+
+.affichage-st{
+    width: 100%;
+    height: 30px;
+    margin: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    border: 2px hidden white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: dimgrey;
+}
+
+.menu-nav{
+    font-weight: bolder;
+    font-family: "montserrat";
+    font-size: 300%;
+
+    background: -webkit-linear-gradient(45deg, mediumseagreen, lightseagreen);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
