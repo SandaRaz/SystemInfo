@@ -12,6 +12,7 @@ $(document).ready(function () {
 
        var row = $(this).closest('tr');
        let cellules = row.children();
+
        for (let i = 0; i < 2; i++) {        //--------------------- 2 premiers cellule td
            cellules[i].innerHTML = ""
            var input = document.createElement("input");
@@ -66,10 +67,22 @@ $(document).ready(function () {
 
                   });
               }
-
-
            });
        }
+
+       var save = document.getElementById("saving");
+       var saveIco = document.createElement('i');
+       if(save.children.length === 0){
+           saveIco.classList.add('fas');
+           saveIco.classList.add('fa-check');
+           saveIco.classList.add('saveButton');
+           save.appendChild(saveIco);
+       }else{
+           saveIco = save.firstChild;
+       }
+       saveIco.addEventListener('click', function () {
+           location.reload();
+       });
    })
 
 
@@ -144,6 +157,20 @@ $(document).ready(function () {
 
             });
         }
+
+        var save = document.getElementById("saving");
+        var saveIco = document.createElement('i');
+        if(save.children.length === 0){
+            saveIco.classList.add('fas');
+            saveIco.classList.add('fa-check');
+            saveIco.classList.add('saveButton');
+            save.appendChild(saveIco);
+        }else{
+            saveIco = save.firstChild;
+        }
+        saveIco.addEventListener('click', function () {
+            location.reload();
+        });
     })
 
     $('.modif-linkCJ').click(function (event) {
@@ -217,6 +244,21 @@ $(document).ready(function () {
 
             });
         }
+
+        var save = document.getElementById("saving");
+        var saveIco = document.createElement('i');
+        if(save.children.length === 0){
+            saveIco.classList.add('fas');
+            saveIco.classList.add('fa-check');
+            saveIco.classList.add('saveButton');
+            save.appendChild(saveIco);
+        }else{
+            saveIco = save.firstChild;
+        }
+        saveIco.addEventListener('click', function () {
+            location.reload();
+        });
     })
+
 
 });

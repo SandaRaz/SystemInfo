@@ -20,10 +20,31 @@ $(document).ready(function () {
        //     });
        // }
 
+       var iconeSuppr = $(this).get()[0];
+
+       console.log(iconeSuppr.firstChild);
+
+       var ouinon = document.createElement('div');
+            var oui = document.createElement('p');
+            oui.innerText = "oui";
+            oui.classList.add("ouinonText");
+            var non = document.createElement('p');
+            non.innerText = "non";
+            non.classList.add("ouinonText");
+       ouinon.classList.add("ouinonBlock");
+       ouinon.appendChild(oui);
+       ouinon.appendChild(non);
+
+       iconeSuppr.firstChild.remove();
+       iconeSuppr.appendChild(ouinon);
+
        var id = $(this).data('id');
        var compte = $(this).data('compte');
        var row = $(this).closest('tr');
 
+
+
+       /*
        $.ajax({
            url: '../deleteRow.MyController',
            type: 'POST',
@@ -39,6 +60,8 @@ $(document).ready(function () {
                alert("Une erreur est survenue lors de la suppression de la ligne.")
            }
        });
+
+       */
    });
 
     $('.delete-linkPT').click(function(event){

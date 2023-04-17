@@ -15,11 +15,11 @@
 	position: relative;
 	display: flex;
 	align-items: center;
-	width: 82%;
+	width: 94%;
 	height: 30px;
 	border: 1px solid #c4c4c4;
 	border-radius: 6px;
-	padding: 0 20px;
+	/*padding: 0 20px;*/
 	transition: 0.2s;
 
 	margin: auto;
