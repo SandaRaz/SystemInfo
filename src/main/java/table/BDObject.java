@@ -158,6 +158,39 @@ public class BDObject {
 		return tab;
 	}
 
+	public ArrayList<BDObject> FindOffsetLimit(Connection conn, String nomcolonne, Object condition, int offset, int limit) throws Exception{
+		if(conn.isClosed()){
+			conn = Connex.OracleConnect();
+		}
+
+		ArrayList<BDObject> tab = new ArrayList<BDObject>();
+
+		Class<?> thisclass = Class.forName(this.getClass().getName());
+		Constructor<?> hisConstr = thisclass.getConstructor();
+		ArrayList<Field> vField = new ArrayList<Field>();
+		for(Field f : thisclass.getDeclaredFields()){
+			if(f.getModifiers() == 0){
+				vField.add(f);
+			}
+		}
+		Statement stmt = conn.createStatement();
+		String query = "SELECT * FROM "+this.getClass().getSimpleName()+" WHERE "+nomcolonne+"='"+condition+"'"+" ORDER BY "+getAttributSimpleName(vField.get(0))+" OFFSET "+offset+" LIMIT "+limit;
+		System.out.println("Sql >>> "+query);
+
+		ResultSet res = stmt.executeQuery(query);
+		while(res.next()){
+			Object clone = hisConstr.newInstance();
+			for(int i=0;i<vField.size();i++){
+				DynamicInsert(clone,res,vField.get(i),i+1);
+			}
+			tab.add((BDObject) clone);
+		}
+		res.close();
+		stmt.close();
+
+		return tab;
+	}
+
 //----------------------------------------------------------------------------------------
 //----------------------------------  FONCTION DELETE ------------------------------------
 
@@ -678,5 +711,66 @@ public class BDObject {
 		java.sql.Date sqlDate = java.sql.Date.valueOf(ldt);
 
 		return sdf2.format(sqlDate);
+	}
+
+	public static int compteLigne(Connection cnx, String nomtable, String colonne, String value) throws SQLException {
+		int row = 0;
+
+		boolean closed = false;
+		if(cnx.isClosed()){
+			cnx = Connex.PsqlConnect();
+			closed = true;
+		}
+
+		String sql = "SELECT count(*) FROM "+nomtable+" WHERE "+colonne+"='"+value+"'";
+		System.out.println("Sql >>> "+sql);
+		Statement stmt = cnx.createStatement();
+		ResultSet res = stmt.executeQuery(sql);
+		while(res.next()){
+			row = res.getInt(1);
+		}
+
+		if(closed){
+			cnx.close();
+		}
+		return row;
+	}
+
+	public List<BDObject> recherchePlanV1(Connection cnx,String colonne1, String valeur1, String colonne2, String valeur2, String intitule) throws Exception {
+		List<BDObject> resultats = new ArrayList<>();
+
+		boolean closed = false;
+		if(cnx.isClosed()){
+			cnx = Connex.PsqlConnect();
+			closed = true;
+		}
+
+		Class<?> thisclass = Class.forName(this.getClass().getName());
+		Constructor<?> hisConstr = thisclass.getConstructor();
+		List<Field> vField = new ArrayList<>();
+		for(Field f : thisclass.getDeclaredFields()){
+			if(f.getModifiers() == 0){
+				vField.add(f);
+			}
+		}
+
+		String sql = "SELECT * FROM "+this.getClass().getSimpleName()+" WHERE "+colonne1+"='"+valeur1+"' AND ("+colonne2+" LIKE '"+valeur2+"' OR LOWER(intitule) LIKE '"+intitule+"')";
+		System.out.println("Sql >>> "+sql);
+		Statement stmt = cnx.createStatement();
+		ResultSet res = stmt.executeQuery(sql);
+
+		while(res.next()){
+			Object clone = hisConstr.newInstance();
+			for(int i=0;i<vField.size();i++){
+				DynamicInsert(clone,res,vField.get(i),i+1);
+			}
+			resultats.add((BDObject) clone);
+		}
+
+		if(closed){
+			cnx.close();
+		}
+
+		return resultats;
 	}
 }

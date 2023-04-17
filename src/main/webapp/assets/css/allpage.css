@@ -19,6 +19,9 @@ a{
     text-decoration: none;
     color: black;
 }
+a:hover{
+    text-decoration: none;
+}
 
 #content{
     height: auto;
@@ -28,10 +31,12 @@ a{
 }
 
 #menu{
-    width: 80%;
-    height: auto;
     margin: auto;
     margin-top: 1%;
+
+    width: 80%;
+    height: auto;
+
     border-radius: 10px;
     border: solid rgb(48, 56, 65);
 
@@ -156,4 +161,9 @@ a{
     color: mediumspringgreen;
     font-size: smaller;
     font-family: "quicksand", serif;
+}
+
+#footer p{
+    margin-top: 1%;
+    margin-bottom: 1%;
 }

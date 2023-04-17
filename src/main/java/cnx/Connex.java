@@ -1,5 +1,7 @@
 package cnx;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.sql.*;
 
 public class Connex{
@@ -26,8 +28,28 @@ public class Connex{
 		Connection c = null;
 		try
 		{
+			String password = "";
+			try{
+				InetAddress adresse = InetAddress.getLocalHost();
+				String nompc = adresse.getHostName();
+				switch (nompc){
+					case "SUPER-STRIKAS":
+						password = "mdpprom15";
+						break;
+					case "sanda":
+					case "p15b-160-sanda":
+						password = "root";
+						break;
+					//------ autre nom de pc -----
+
+					//----------------------------
+				}
+			}catch(UnknownHostException uhe){
+				throw new Exception("Impossible de recuperer le nom de l'ordinateur");
+			}
+
 			Class.forName("org.postgresql.Driver");
-			c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/systinfo","postgres","root");
+			c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/systinfo","postgres",password);
 		}
 		catch(Exception e){
 			System.out.println("Erreur de connexion");
@@ -36,8 +58,7 @@ public class Connex{
 		return c;
 	}
 
-	public static void main(String[] args) {
-		Connection cnx = Connex.PsqlConnect();
-		System.out.println(">>>> "+cnx);
-	}
+//	public static void main(String[] args) {
+//		Connex.PsqlConnect();
+//	}
 }

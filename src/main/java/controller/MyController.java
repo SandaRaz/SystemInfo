@@ -5,13 +5,9 @@ import exception.DeviseException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpSession;
 import module.Fonction;
-import org.apache.poi.ss.formula.functions.Code;
-import table.CodeJournaux;
-import table.Entreprise;
-import table.PlanComptable;
+import table.*;
 
 import jakarta.servlet.annotation.WebServlet;
-import table.PlanTiers;
 
 import java.io.IOException;
 import java.io.PrintWriter;

@@ -8,5 +8,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <div id="footer">
-    <p>Syst&egrave;me d'Information C - 2023</p>
+    <p>Syst&egrave;me d'Information <i class="far fa-copyright"></i> - 2023</p>
 </div>
